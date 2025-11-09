@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { getUser, updateUser } from "../services/user.services";
+import { findUserByID, updateUser } from "../services/user.services";
 import { StatusCodes } from "http-status-codes";
 
 export async function getMyDetails(req: Request, res: Response) {
-    const user = await getUser(req.params.id);
+    const user = await findUserByID(req.params.id);
     res.status(StatusCodes.OK).json(user);
 }
 

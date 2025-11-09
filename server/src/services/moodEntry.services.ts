@@ -1,4 +1,5 @@
 import MoodEntry, { type MoodEntryType } from "../models/moodEntry.model";
+import { NotFound } from "../utils/errors.utils";
 
 export async function getMoodEntries() {
     const filter: Record<string, any> = {};
@@ -9,7 +10,7 @@ export async function findMoodEntryByID(id: string) {
     const moodEntry = await MoodEntry.findById(id);
 
     if (!moodEntry)
-        throw new Error("Mood entry not found");
+        throw new NotFound("Mood entry not found");
 
     return moodEntry;
 }

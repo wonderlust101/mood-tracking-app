@@ -6,7 +6,7 @@ import {
 
 const router = express.Router();
 
-router.put("/", updateMyDetails);
 router.get("/", getMyDetails);
+router.put("/", updateMyDetails);
 
 export default router;

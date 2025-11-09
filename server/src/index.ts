@@ -6,6 +6,7 @@ import connectDB from './config/db';
 import moodEntryRoutes from './routes/moodEntry.route';
 import authRoutes from './routes/auth.route';
 import userRoutes from './routes/user.route';
+import errorHandler from "./middlewares/error-handler";
 
 // Initialization of express app
 dotenv.config();
@@ -15,7 +16,7 @@ const allowedOrigins = process.env.CLIENT_ORIGIN || 'http://localhost:5173';
 // Middleware
 app.use(cors({
     credentials : true,
-    origin      : allowedOrigins
+    origin : allowedOrigins
 }));
 app.use(cookieParser());
 app.use(express.json());
@@ -26,6 +27,8 @@ app.use("/api/v1/moodEntry", moodEntryRoutes);
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/user", userRoutes);
 
+// Error Handling Middleware
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
 connectDB().then(() =>
