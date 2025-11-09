@@ -6,6 +6,7 @@ import connectDB from './config/db';
 import moodEntryRoutes from './routes/moodEntry.route';
 import authRoutes from './routes/auth.route';
 import userRoutes from './routes/user.route';
+import deserializeUser from "./middlewares/deserialize-user";
 import errorHandler from "./middlewares/error-handler";
 
 // Initialization of express app
@@ -21,6 +22,8 @@ app.use(cors({
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended : true}));
+
+app.use(deserializeUser);
 
 // Routes
 app.use("/api/v1/moodEntry", moodEntryRoutes);

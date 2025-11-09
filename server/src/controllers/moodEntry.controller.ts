@@ -12,11 +12,11 @@ export async function getAllMoodEntries(req: Request, res: Response) {
 }
 
 export async function getMoodEntry(req: Request, res: Response) {
-    const moodEntry = await findMoodEntryByID(req.params.id);
+    const moodEntry = await findMoodEntryByID(req.validatedParams.id);
     res.status(StatusCodes.OK).json(moodEntry);
 }
 
 export async function createMoodEntry(req: Request, res: Response) {
-    const moodEntry = await createNewMoodEntry(req.body);
+    const moodEntry = await createNewMoodEntry(req.validatedBody);
     res.status(StatusCodes.CREATED).json(moodEntry);
 }
