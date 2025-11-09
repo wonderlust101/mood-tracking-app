@@ -1,12 +1,17 @@
 import express from 'express';
 import {
-    getAllMoodEntries
-} from "../controllers/moodEntry.controller"
+    getAllMoodEntries,
+    getMoodEntry,
+    createMoodEntry
+} from "../controllers/moodEntry.controller";
 
 const router = express.Router();
 
-router.route("/").get(getAllMoodEntries);
+router.route("/")
+        .get(getAllMoodEntries)
+        .post(createMoodEntry);
 
-
+router.route("/:id")
+        .get(getMoodEntry);
 
 export default router;

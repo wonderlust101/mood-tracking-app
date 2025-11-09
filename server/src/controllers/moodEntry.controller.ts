@@ -1,6 +1,22 @@
 import type { Request, Response } from "express";
+import {
+    createNewMoodEntry,
+    findMoodEntryByID,
+    getMoodEntries
+} from "../services/moodEntry.services";
 import {StatusCodes} from "http-status-codes";
 
 export async function getAllMoodEntries(req: Request, res: Response) {
-    res.status(StatusCodes.OK).json({ message: "All mood entries"});
+    const moodEntries = await getMoodEntries();
+    res.status(StatusCodes.OK).json(moodEntries);
+}
+
+export async function getMoodEntry(req: Request, res: Response) {
+    const moodEntry = await findMoodEntryByID(req.params.id);
+    res.status(StatusCodes.OK).json(moodEntry);
+}
+
+export async function createMoodEntry(req: Request, res: Response) {
+    const moodEntry = await createNewMoodEntry(req.body);
+    res.status(StatusCodes.CREATED).json(moodEntry);
 }

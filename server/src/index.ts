@@ -4,6 +4,8 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import connectDB from './config/db';
 import moodEntryRoutes from './routes/moodEntry.route';
+import authRoutes from './routes/auth.route';
+import userRoutes from './routes/user.route';
 
 // Initialization of express app
 dotenv.config();
@@ -21,8 +23,8 @@ app.use(express.urlencoded({extended : true}));
 
 // Routes
 app.use("/api/v1/moodEntry", moodEntryRoutes);
-
-// Error Handling
+app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/user", userRoutes);
 
 
 const PORT = process.env.PORT || 3000;
