@@ -1,5 +1,5 @@
 import User from "../models/user.model";
-import { NotFound } from "../utils/errors.utils";
+import { NotFound } from "../middlewares/errors";
 import { UpdateUserSchemaType } from "../schemas/user.schema";
 
 export async function findUserByID(userId: string) {

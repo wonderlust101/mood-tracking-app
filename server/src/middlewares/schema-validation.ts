@@ -1,6 +1,6 @@
 import { ZodType } from "zod";
 import { Request, Response, NextFunction } from "express";
-import { ValidationError } from "../utils/errors.utils";
+import { ValidationError } from "./errors";
 
 type Schema = {
     body?: ZodType,

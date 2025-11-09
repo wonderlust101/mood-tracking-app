@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import User, { UserType } from "../models/user.model";
-import { Conflict, Unauthorized } from "../utils/errors.utils";
+import { Conflict, Unauthorized } from "../middlewares/errors";
 import { createSession } from "./session.services";
 import { signJWT } from "../utils/jwt.utils";
 import { LoginSchemaType, RegisterSchemaType } from "../schemas/auth.schema";

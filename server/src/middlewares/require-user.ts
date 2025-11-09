@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { Unauthorized } from "../utils/errors.utils";
+import { Unauthorized } from "./errors";
 
 export function requireUser(req: Request, res: Response, next: NextFunction) {
     if(!req.user) {

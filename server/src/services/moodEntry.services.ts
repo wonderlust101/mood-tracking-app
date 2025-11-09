@@ -1,5 +1,5 @@
 import MoodEntry, { type MoodEntryType } from "../models/moodEntry.model";
-import { NotFound, Unauthorized } from "../utils/errors.utils";
+import { NotFound, Unauthorized } from "../middlewares/errors";
 
 export async function getMoodEntries(userId: string) {
     const filter: Record<string, any> = {};
