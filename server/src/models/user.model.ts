@@ -11,8 +11,7 @@ export type UserType = Document & {
 const User = new mongoose.Schema<UserType>(
     {
         name : {
-            type : String,
-            required : true
+            type : String
         },
         profileImage : {
             type : String,

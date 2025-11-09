@@ -1,4 +1,5 @@
 import { StatusCodes } from "http-status-codes";
+import { z, ZodError } from "zod";
 
 // Base Custom Error
 export default class CustomAPIError extends Error {
@@ -56,10 +57,10 @@ export class Unauthorized extends CustomAPIError {
 export class ValidationError extends CustomAPIError {
     public errors: Record<string, string[]>;
 
-    constructor(message: string, errors: Record<string, string[]>) {
+    constructor(zodError: ZodError) {
         super("Validation failed", StatusCodes.UNPROCESSABLE_ENTITY, true);
 
         this.name = "ZodValidationError";
-        this.errors = errors;
+        this.errors = z.flattenError(zodError).fieldErrors;
     }
 }
