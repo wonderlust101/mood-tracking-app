@@ -1,16 +1,12 @@
-import { z } from 'zod';
+import { z } from "zod";
 
-export const CreateUserSchema = z.object(
-    {
-        email: z.email().min(1, "Email is required."),
-        password: z.string().min(1, "Password is required."),
-    }
-)
+export const updateUserSchema = z.object({
+    name : z.string("Name must be a valid string.")
+        .min(1, {message : "Name cannot be empty."})
+        .optional(),
 
-export const UpdateUserSchema = z.object({
-    name: z.string().optional(),
-    profileImage: z.string().optional(),
-})
+    profileImage : z.string("Profile image URL must be a valid string.")
+        .optional()
+});
 
-export type CreateUserSchemaType = z.infer<typeof CreateUserSchema>;
-export type UpdateUserSchemaType = z.infer<typeof UpdateUserSchema>;
+export type UpdateUserSchemaType = z.infer<typeof updateUserSchema>;

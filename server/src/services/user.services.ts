@@ -13,8 +13,6 @@ export async function findUserByID(userId: string) {
 export async function updateUser(userId: string, userData: UpdateUserSchemaType) {
     const user = await findUserByID(userId);
 
-    console.log(user);
-
     try {
         user.set(userData);
         return await user.save();

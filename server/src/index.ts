@@ -8,6 +8,7 @@ import authRoutes from './routes/auth.route';
 import userRoutes from './routes/user.route';
 import deserializeUser from "./middlewares/deserialize-user";
 import errorHandler from "./middlewares/error-handler";
+import { requireUser } from "./middlewares/require-user";
 
 // Initialization of express app
 dotenv.config();
@@ -26,9 +27,9 @@ app.use(express.urlencoded({extended : true}));
 app.use(deserializeUser);
 
 // Routes
-app.use("/api/v1/moodEntry", moodEntryRoutes);
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/moodEntry", requireUser,moodEntryRoutes);
+app.use("/api/v1/user", requireUser, userRoutes);
 
 // Error Handling Middleware
 app.use(errorHandler);

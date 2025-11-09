@@ -4,8 +4,7 @@ import User, { UserType } from "../models/user.model";
 import { Conflict, Unauthorized } from "../utils/errors.utils";
 import { createSession } from "./session.services";
 import { signJWT } from "../utils/jwt.utils";
-import { LoginSchemaType } from "../schemas/auth.schema";
-import { CreateUserSchemaType } from "../schemas/user.schema";
+import { LoginSchemaType, RegisterSchemaType } from "../schemas/auth.schema";
 
 async function createNewSession(userId: mongoose.Types.ObjectId, email: string) {
     const session = await createSession(userId, email);
@@ -23,7 +22,7 @@ async function createNewSession(userId: mongoose.Types.ObjectId, email: string) 
     return {accessToken, refreshToken, session};
 }
 
-export async function createNewUser(userData: CreateUserSchemaType) {
+export async function createNewUser(userData: RegisterSchemaType) {
     const {email, password} = userData;
 
     if (await User.findOne({email}))
