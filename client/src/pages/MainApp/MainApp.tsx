@@ -1,18 +1,8 @@
 import styles from "./MainApp.module.css";
-import { logout } from "@/api/auth.ts";
-import { useQueryClient } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/features/auth/hooks/useAuth.ts";
 
 function MainApp() {
-    const queryClient = useQueryClient();
-    const navigate = useNavigate();
-
-    async function handleLogout() {
-        await logout();
-        queryClient.removeQueries({queryKey: ["me"]});
-
-        navigate("/login");
-    }
+    const {handleLogout} = useAuth()
 
     return (
         <div className={styles.mainApp}>

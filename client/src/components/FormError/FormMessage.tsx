@@ -10,7 +10,7 @@ type FormErrorProps = {
 
 export default function FormMessage({message, isError}: FormErrorProps) {
     return (
-        <div className={`${styles.formError} ${isError ? styles.error : ""}`}>
+        <div role="alert" aria-live="assertive" className={`${styles.formError} ${isError ? styles.error : ""}`}>
             <ErrorIcon aria-hidden={true}/>
             <p className="micro" style={{color: "var(--color-red-700)"}}>{message}</p>
         </div>

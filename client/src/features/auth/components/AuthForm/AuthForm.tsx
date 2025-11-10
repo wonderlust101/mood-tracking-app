@@ -12,7 +12,7 @@ type AuthFormProps = {
     register: any;
     errors: Record<string, any>;
     isSubmitting: boolean;
-    passwordAutoComplete?: "new-password" | "current-password";
+    passwordAutoComplete: "new-password" | "current-password";
     buttonText: string;
     footerText: string;
     footerLink: string;
@@ -34,10 +34,10 @@ function AuthForm({
                   }: AuthFormProps) {
     return (
         <>
-            <div className={styles.header}>
+            <section className={styles.header}>
                 <h2 className="heading-md">{header}</h2>
                 <p className="body-lg">{subHeader}</p>
-            </div>
+            </section>
 
             <Form onSubmit={onSubmit} className={styles.form}>
                 <div id="input-group">
@@ -70,8 +70,9 @@ function AuthForm({
                 </div>
             </Form>
 
-
-            <p className="text-center">{footerText} <Link className={styles.link} to={footerLinkTo}>{footerLink}</Link></p>
+            <section>
+                <p className="text-center">{footerText} <Link className={styles.link} to={footerLinkTo}>{footerLink}</Link></p>
+            </section>
         </>
     );
 }

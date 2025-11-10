@@ -12,6 +12,7 @@ function Login() {
             register={register}
             errors={errors}
             isSubmitting={isSubmitting}
+            passwordAutoComplete="current-password"
             buttonText="Log In"
             footerText="Haven't got an account?"
             footerLink="Sign up."

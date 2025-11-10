@@ -1,22 +1,12 @@
 import { Navigate, Outlet } from "react-router-dom";
 import styles from "./AuthLayout.module.css";
 import Logo from '@/assets/images/logo.svg?react';
-import { useAuthQuery } from "@/features/auth/hooks/useAuthQuery.ts";
-import { useEffect } from "react";
+import { useAuthQuery } from "@/features/auth/hooks/useAuthQuery";
 
 function AuthLayout() {
-    const {data, isLoading, isError} = useAuthQuery();
+    const {data, isLoading} = useAuthQuery();
 
-    useEffect(() => {
-        if (!isLoading) {
-            if (data)
-                console.log("User is logged in");
-            else if (isError)
-                console.log("Error fetching user data");
-        }
-    }, [isLoading, data, isError])
-
-    if (isLoading) return <p>Loadings...</p>
+    if (isLoading) return <p>Loading...</p>
     if (data) return <Navigate to="/" replace/>
 
     return (

@@ -12,6 +12,7 @@ function Register() {
             register={register}
             errors={errors}
             isSubmitting={isSubmitting}
+            passwordAutoComplete="new-password"
             buttonText="Sign Up"
             footerText="Already got an account?"
             footerLink="Log in."

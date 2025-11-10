@@ -1,10 +1,12 @@
-import {useQuery} from "@tanstack/react-query"
-import { getCurrentUser } from "@/api/auth.ts";
+import { useQuery } from "@tanstack/react-query";
+import { getCurrentUser } from "@/api/auth";
 
 export function useAuthQuery() {
     return useQuery({
-        queryKey: ["me"],
-        queryFn: () => getCurrentUser(),
-        retry: false
-    })
+        queryKey : ["me"],
+        queryFn : () => getCurrentUser(),
+        retry : false,
+        staleTime : 5 * 60 * 1000,
+        refetchOnWindowFocus : false
+    });
 }

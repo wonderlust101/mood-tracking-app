@@ -14,4 +14,9 @@
         background-color: var(--color-blue-700);
         cursor: pointer;
     }
+
+    &:disabled {
+        background-color: var(--color-blue-700);
+        cursor: not-allowed;
+    }
 }

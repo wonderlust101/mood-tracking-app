@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
-import { type AuthFields, authSchema } from "@/features/auth/schema/authSchema.ts";
-import { login, createAccount } from "@/api/auth.ts";
-import { useQueryClient } from "@tanstack/react-query";
+import { type AuthFields, authSchema } from "@/features/auth/schema/authSchema";
+import { login, createAccount, logout } from "@/api/auth";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { isAxiosError } from "axios";
 
 export function useAuth() {
@@ -19,45 +19,54 @@ export function useAuth() {
         resolver : zodResolver(authSchema)
     });
 
-    async function handleLogin(data: AuthFields) {
-        try {
-            await login(data);
-            await queryClient.invalidateQueries({queryKey : ["me"]});
-
+    const loginMutation = useMutation({
+        mutationFn : login,
+        onSuccess : () => {
+            queryClient.invalidateQueries({queryKey : ["me"]});
             navigate("/");
-        } catch(error) {
+        },
+        onError : (error: unknown) => {
             let message = "Something went wrong. Please try again later.";
-
-            if (isAxiosError(error) && error.response?.status === 401)
+            if (isAxiosError(error) && error.response?.status === 401) {
                 message = "That email or password doesn’t seem right. Please double check and try again.";
-            else if (error instanceof Error)
-                console.error("Unexpected error:", error.message);
-            else
-                console.error("Unknown error:", error);
-
+            } else if (isAxiosError(error) && error.response?.status === 0) {
+                message = "Network Error. Please check your internet connection and try again.";
+            }
             setError("root", {message});
         }
-    }
+    });
 
-    async function handleRegister(data: AuthFields) {
-        try {
-            await createAccount(data);
-            await queryClient.invalidateQueries({queryKey : ["me"]});
-
+    const registerMutation = useMutation({
+        mutationFn : createAccount,
+        onSuccess : () => {
+            queryClient.invalidateQueries({queryKey : ["me"]});
             navigate("/");
-        } catch(error) {
+        },
+        onError : (error: unknown) => {
             let message = "Something went wrong. Please try again later.";
-
-            if (isAxiosError(error) && error.response?.status === 409)
+            if (isAxiosError(error) && error.response?.status === 409) {
                 message = "An account may already exist with that email. Try logging in or resetting your password.";
-            if (error instanceof Error)
-                console.error("Unexpected error:", error.message);
-            else
-                console.error("Unknown error:", error);
-
+            } else if (isAxiosError(error) && error.response?.status === 0) {
+                message = "Network Error. Please check your internet connection and try again.";
+            }
             setError("root", {message});
         }
-    }
+    });
+
+    const logoutMutation = useMutation({
+        mutationFn : logout,
+        onSuccess : () => {
+            queryClient.removeQueries({queryKey : ["me"]});
+            navigate("/login");
+        },
+        onError : (error: unknown) => {
+            console.error("Logout error:", error);
+        }
+    });
+
+    const handleLogin = (data: AuthFields) => loginMutation.mutate(data);
+    const handleRegister = (data: AuthFields) => registerMutation.mutate(data);
+    const handleLogout = () => logoutMutation.mutate();
 
     return {
         register,
@@ -66,6 +75,7 @@ export function useAuth() {
         errors,
         isSubmitting,
         handleLogin,
-        handleRegister
+        handleRegister,
+        handleLogout
     };
 }
