@@ -1,7 +1,7 @@
 import MoodEntry, { type MoodEntryType } from "../models/moodEntry.model";
 import { NotFound, Unauthorized } from "../middlewares/errors";
 
-export async function getMoodEntries(userId: string) {
+export async function getMoodEntriesByUser(userId: string) {
     const filter: Record<string, any> = {};
 
     if (userId)
@@ -10,7 +10,7 @@ export async function getMoodEntries(userId: string) {
     return await MoodEntry.find(filter).sort({createdAt : -1}).lean().exec();
 }
 
-export async function findMoodEntryByID(userId: string, id: string) {
+export async function getMoodEntryByIdAndUser(userId: string, id: string) {
     const moodEntry = await MoodEntry.findById(id).lean().exec();
 
     if (!moodEntry)
@@ -22,6 +22,6 @@ export async function findMoodEntryByID(userId: string, id: string) {
     return moodEntry;
 }
 
-export async function createNewMoodEntry(userId: string, moodEntry: MoodEntryType) {
+export async function createMoodEntry(userId: string, moodEntry: MoodEntryType) {
     return await MoodEntry.create({...moodEntry, userId});
 }

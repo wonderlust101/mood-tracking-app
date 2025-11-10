@@ -53,7 +53,6 @@ export class Unauthorized extends CustomAPIError {
     }
 }
 
-// TODO: ADD ZOD VALIDATION ERROR
 export class ValidationError extends CustomAPIError {
     public errors: Record<string, string[]>;
 

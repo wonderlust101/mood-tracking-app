@@ -2,7 +2,7 @@ import User from "../models/user.model";
 import { NotFound } from "../middlewares/errors";
 import { UpdateUserSchemaType } from "../schemas/user.schema";
 
-export async function findUserByID(userId: string) {
+export async function getUserById(userId: string) {
     const user = await User.findById(userId);
     if (!user)
         throw new NotFound(`User with ID "${userId}" was not found.`);
@@ -10,8 +10,8 @@ export async function findUserByID(userId: string) {
     return user;
 }
 
-export async function updateUser(userId: string, userData: UpdateUserSchemaType) {
-    const user = await findUserByID(userId);
+export async function updateUserById(userId: string, userData: UpdateUserSchemaType) {
+    const user = await getUserById(userId);
 
     try {
         user.set(userData);

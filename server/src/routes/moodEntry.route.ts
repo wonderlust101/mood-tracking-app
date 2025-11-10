@@ -1,8 +1,8 @@
 import express from 'express';
 import {
-    getAllMoodEntries,
-    getMoodEntry,
-    createMoodEntry
+    getAllMoodEntriesHandler,
+    getMoodEntryByIdHandler,
+    createMoodEntryHandler
 } from "../controllers/moodEntry.controller";
 import { zodValidation } from "../middlewares/schema-validation";
 import { moodEntrySchema } from "../schemas/moodEntry.schema";
@@ -11,10 +11,10 @@ import { ObjectIdSchema } from "../schemas/params.schema";
 const router = express.Router();
 
 router.route("/")
-        .get(getAllMoodEntries)
-        .post(zodValidation({body: moodEntrySchema}), createMoodEntry);
+        .get(getAllMoodEntriesHandler)
+        .post(zodValidation({body: moodEntrySchema}), createMoodEntryHandler);
 
 router.route("/:id")
-        .get(zodValidation({params: ObjectIdSchema}), getMoodEntry);
+        .get(zodValidation({params: ObjectIdSchema}), getMoodEntryByIdHandler);
 
 export default router;

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import Session from "../models/session.model";
 
-export async function getSession(sessionId: string) {
+export async function getSessionById(sessionId: string) {
     const session = await Session.findById(sessionId);
 
     return session && session.valid ? session : null;

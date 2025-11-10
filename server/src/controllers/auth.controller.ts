@@ -1,10 +1,10 @@
 import type { Request, Response } from "express";
-import { createNewUser, loginUser } from "../services/auth.services";
+import { registerUser, authenticateUser } from "../services/auth.service";
 import { StatusCodes } from "http-status-codes";
-import { invalidateSession } from "../services/session.services";
+import { invalidateSession } from "../services/session.service";
 
-export async function register(req: Request, res: Response) {
-    const {accessToken, refreshToken, session, newUser} = await createNewUser(req.validatedBody);
+export async function registerHandler(req: Request, res: Response) {
+    const {accessToken, refreshToken, session, newUser} = await registerUser(req.validatedBody);
 
     res.cookie("accessToken", accessToken, {
         maxAge: 5 * 60 * 1000,
@@ -30,8 +30,8 @@ export async function register(req: Request, res: Response) {
     });
 }
 
-export async function login(req: Request, res: Response) {
-    const {accessToken, refreshToken, session} = await loginUser(req.validatedBody);
+export async function loginHandler(req: Request, res: Response) {
+    const {accessToken, refreshToken, session} = await authenticateUser(req.validatedBody);
 
     res.cookie("accessToken", accessToken, {
         maxAge: 5 * 60 * 1000,
@@ -53,19 +53,19 @@ export async function login(req: Request, res: Response) {
     })
 }
 
-export async function logout(req: Request, res: Response) {
+export async function logoutHandler(req: Request, res: Response) {
     res.cookie("accessToken", "", {maxAge: 0, httpOnly: true})
     res.cookie("refreshToken", "", {maxAge: 0, httpOnly: true})
 
     const session = await invalidateSession(req.user.sessionId)
-
+2
     res.status(StatusCodes.OK).json({
         message: "Logout successful",
         data: session
     })
 }
 
-export async function me(req: Request, res: Response) {
+export async function getCurrentUserHandler(req: Request, res: Response) {
     res.status(StatusCodes.OK).json({
         userId: req.user.userId,
         email: req.user.email,

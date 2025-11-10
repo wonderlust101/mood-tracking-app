@@ -1,0 +1,188 @@
+@import url("https://fonts.googleapis.com/css2?family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap");
+
+/* -------------------- Global Styles -------------------- */
+
+* {
+    font-family: "Reddit Sans", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, input[type="text"], input[type="email"], input[type="password"], textarea {
+    color: var(--color-neutral-900);
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* -------------------- Headings -------------------- */
+
+.heading-xl { /* Text Preset 1 — Reddit Sans, Bold */
+    font-weight: 700;
+    font-size: 2.875rem;
+    line-height: 120%;
+    letter-spacing: -0.125rem;
+
+    @media (min-width: 48rem) {
+        font-size: 3.25rem;
+        line-height: 140%;
+        letter-spacing: -0.125rem;
+    }
+}
+
+.heading-lg { /* Text Preset 2 — Reddit Sans, Bold */
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 120%;
+    letter-spacing: -0.01875rem;
+
+    @media (min-width: 48rem) {
+        font-size: 2.5rem;
+        line-height: 120%;
+        letter-spacing: -0.01875rem;
+    }
+}
+
+.heading-md { /* Text Preset 3 — Reddit Sans, Bold */
+    font-weight: 700;
+    font-size: 1.75rem;
+    line-height: 130%;
+    letter-spacing: -0.01875rem;
+
+    @media (min-width: 48rem) {
+        font-size: 2rem;
+        line-height: 140%;
+        letter-spacing: -0.01875rem;
+    }
+}
+
+.heading-sm { /* Text Preset 4 — Reddit Sans, SemiBold */
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 140%;
+    letter-spacing: 0;
+}
+
+.heading-sm-regular { /* Text Preset 4 (Regular) — Reddit Sans, Regular */
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 140%;
+    letter-spacing: 0;
+}
+
+/* -------------------- Body / Paragraph -------------------- */
+
+.body-lg-semibold { /* Text Preset 5 — Reddit Sans, SemiBold */
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 140%;
+    letter-spacing: 0;
+}
+
+.body-lg { /* Text Preset 6 — Reddit Sans, Medium */
+    font-weight: 500;
+    font-size: 1.125rem;
+    line-height: 120%;
+    letter-spacing: 0;
+}
+
+.body-lg-italic { /* Text Preset 6 (Italic) — Reddit Sans, Medium Italic */
+    font-weight: 500;
+    font-style: italic;
+    font-size: 1.125rem;
+    line-height: 130%;
+    letter-spacing: 0;
+}
+
+.body-lg-regular { /* Text Preset 6 (Regular) — Reddit Sans, Regular */
+    font-weight: 400;
+    font-size: 1.125rem;
+    line-height: 140%;
+    letter-spacing: -0.01875rem;
+}
+
+.body-md { /* Text Preset 7 — Reddit Sans, Regular */
+    font-weight: 400;
+    font-size: 0.9375rem;
+    line-height: 140%;
+    letter-spacing: -0.01875rem;
+}
+
+.caption { /* Text Preset 8 — Reddit Sans, SemiBold */
+    font-weight: 600;
+    font-size: 0.8125rem;
+    line-height: 100%;
+    letter-spacing: 0;
+}
+
+.micro { /* Text Preset 9 — Reddit Sans, Regular */
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 110%;
+    letter-spacing: 0;
+}
+
+
+/* -------------------- Font Weight -------------------- */
+
+.bold {
+    font-weight: 700;
+}
+
+.semi-bold {
+    font-weight: 600;
+}
+
+.medium {
+    font-weight: 500;
+}
+
+.normal {
+    font-weight: 400;
+}
+
+.light {
+    font-weight: 300;
+}
+
+/* -------------------- Font Styles -------------------- */
+
+.italic {
+    font-style: italic;
+}
+
+.normal {
+    font-style: normal;
+}
+
+/* -------------------- Text Alignment -------------------- */
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* -------------------- Text Transformation -------------------- */
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.lowercase {
+    text-transform: lowercase;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}

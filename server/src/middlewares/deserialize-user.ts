@@ -1,18 +1,18 @@
 import { Request, Response, NextFunction } from "express";
-import { signJWT, verifyJWT } from "../utils/jwt.utils";
-import { getSession } from "../services/session.services";
+import { signJWT, verifyJWT } from "../utils/jwt.util";
+import { getSessionById } from "../services/session.service";
 
 export default async function deserializeUser(req: Request, res: Response, next: NextFunction) {
     const {accessToken, refreshToken} = req.cookies;
 
-    // If an access token is present and valid, attach user data to request
+    // If an access token is present and valid, attach user data to the request
     const {payload : accessPayload} = accessToken ? verifyJWT(accessToken) : {payload : null};
     if (accessPayload) {
         req.user = accessPayload;
         return next();
     }
 
-    // If an access token is present and valid, create new access token
+    // If no access token, use refresh token to generate a new access token
     if (!refreshToken) return next();
 
     const {payload : refreshPayload} = verifyJWT(refreshToken);
@@ -23,7 +23,7 @@ export default async function deserializeUser(req: Request, res: Response, next:
     }
 
     // Lookup session in database
-    const session = await getSession(refreshPayload.sessionId);
+    const session = await getSessionById(refreshPayload.sessionId);
     if (!session || !session.valid) return next();
 
     // Generate a new access token from session info

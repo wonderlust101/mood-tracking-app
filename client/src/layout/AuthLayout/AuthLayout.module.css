@@ -1,0 +1,31 @@
+.authLayout {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr calc(100% - 1.5rem * 2) 1fr;
+    align-content: center;
+    row-gap: 3rem;
+    min-height: 100vh;
+    background: var(--color-light-gradient);
+
+    & > * {
+        grid-column: 2;
+    }
+
+    @media (min-width: 48rem) {
+        grid-template-columns: 1fr min(100% - 5rem * 2, 34rem) 1fr;
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+.authContainer {
+    display: grid;
+    gap: 2rem;
+    padding: 2.5rem 2rem;
+    background-color: var(--color-neutral-0);
+    border-radius: 1rem;
+    box-shadow: 0 8px 16px 0 rgba(32, 37, 41, 0.08);
+}

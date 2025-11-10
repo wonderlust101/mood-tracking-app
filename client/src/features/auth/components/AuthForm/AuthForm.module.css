@@ -1,0 +1,33 @@
+.header {
+    display: grid;
+    gap: 0.5rem;
+
+    & p {
+        color: var(--color-neutral-600);
+    }
+}
+
+.link {
+    color: var(--color-blue-600);
+}
+
+.form {
+    display: grid;
+    gap: 2rem;
+
+    & input[type="text"],
+    & input[type="password"],
+    & input[type="email"] {
+        width: 100%;
+    }
+
+    & > div:first-of-type {
+        display: grid;
+        gap: 1.25rem;
+    }
+
+    & > div:last-of-type {
+        display: grid;
+        gap: 1rem;
+    }
+}

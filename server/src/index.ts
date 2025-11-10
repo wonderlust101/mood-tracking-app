@@ -27,7 +27,7 @@ app.use(express.urlencoded({extended : true}));
 app.use(deserializeUser);
 
 // Routes
-app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/Auth", authRoutes);
 app.use("/api/v1/moodEntry", requireUser,moodEntryRoutes);
 app.use("/api/v1/user", requireUser, userRoutes);
 

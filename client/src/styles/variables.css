@@ -1,0 +1,27 @@
+:root {
+    /* -------------------- Neutrals -------------------- */
+    --color-neutral-900: #21214D;
+    --color-neutral-600: #57577B;
+    --color-neutral-300: #9393B7;
+    --color-neutral-200: #CBCDD0;
+    --color-neutral-0: #FFFFFF;
+
+    /* -------------------- Blues -------------------- */
+    --color-blue-700: #2A4CD5;
+    --color-blue-600: #4865DB;
+    --color-blue-200: #C7D3F7;
+    --color-blue-100: #E0E6FA;
+
+    /* -------------------- Red -------------------- */
+    --color-red-700: #E60013;
+
+    /* -------------------- Other -------------------- */
+    --color-red-300: #FF9B99;
+    --color-indigo-300: #B8B1FF;
+    --color-blue-300: #89CAFF;
+    --color-green-300: #89E780;
+    --color-amber-300: #FFC97C;
+
+    /* -------------------- Gradient -------------------- */
+    --color-light-gradient: linear-gradient(180deg, #F5F5FF 72.99%, #E0E0FF 100%);
+}
